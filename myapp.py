@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 # from databricks import sql
+import random
 
 # Function to query the Databricks warehouse
 # def query_database(supplier):
