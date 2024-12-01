@@ -60,8 +60,12 @@ def main():
     if st.session_state.query_result is not None:
         df = st.session_state.query_result
         
-        # Add filters for product_id and price
-        with st.expander("Filters"):
+        # Create two columns for filters and DataFrame
+        col1, col2 = st.columns([1, 3])
+
+        # Filters in the first column
+        with col1:
+            st.subheader("Filters")
             product_id_filter = st.text_input("Filter by Product ID")
             price_filter = st.number_input("Filter by Price", value=0.0, step=0.01)
 
@@ -71,8 +75,10 @@ def main():
         if price_filter > 0:
             df = df[df["price"] >= price_filter]
 
-        # Display the DataFrame
-        st.dataframe(df, height=400)
+        # DataFrame in the second column
+        with col2:
+            st.subheader("Data")
+            st.dataframe(df, height=400)
 
 if __name__ == "__main__":
     main()
